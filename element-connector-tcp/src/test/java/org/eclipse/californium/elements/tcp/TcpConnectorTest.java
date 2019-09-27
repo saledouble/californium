@@ -35,6 +35,7 @@ import org.eclipse.californium.elements.Connector;
 import org.eclipse.californium.elements.RawData;
 import org.eclipse.californium.elements.rule.TestNameLoggerRule;
 import org.eclipse.californium.elements.rule.ThreadsRule;
+import org.eclipse.californium.elements.runner.ParameterizedRepeatingTestRunner;
 import org.eclipse.californium.elements.util.SimpleMessageCallback;
 import org.junit.After;
 import org.junit.Rule;
@@ -43,7 +44,7 @@ import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-@RunWith(Parameterized.class)
+@RunWith(ParameterizedRepeatingTestRunner.class)
 public class TcpConnectorTest {
 
 	private static final int NUMBER_OF_CONNECTIONS = 10;

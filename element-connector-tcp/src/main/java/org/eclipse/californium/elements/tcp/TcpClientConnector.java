@@ -75,7 +75,7 @@ import org.slf4j.LoggerFactory;
  * accept new incoming connections.
  */
 public class TcpClientConnector implements Connector {
-	private static final boolean USE_FIXED_CONNECTION_POOL = false;
+	private static final boolean USE_FIXED_CONNECTION_POOL = true;
 
 	protected final Logger LOGGER = LoggerFactory.getLogger(getClass().getName());
 
