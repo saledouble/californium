@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>element-connector-tcp-netty</artifactId>
-	<packaging>bundle</packaging>
+	<!--  <packaging>bundle</packaging>-->
 
 	<name>element-connector-tcp</name>
 	<description>Element connector implementation for TCP/TLS using netty</description>
@@ -94,7 +94,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
@@ -110,7 +110,7 @@
 						<Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
 					</instructions>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>animal-sniffer-maven-plugin</artifactId>

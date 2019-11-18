@@ -11,7 +11,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>californium-core</artifactId>
-	<packaging>bundle</packaging>
+	<!-- <packaging>bundle</packaging>-->
 
 	<name>Californium (Cf) Core</name>
 	<description>CoAP library module</description>
@@ -78,7 +78,7 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			<!--  <plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
 				<extensions>true</extensions>
@@ -93,7 +93,7 @@
 						<Bundle-SymbolicName>${project.groupId}.core</Bundle-SymbolicName>
 					</instructions>
 				</configuration>
-			</plugin>
+			</plugin>-->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
