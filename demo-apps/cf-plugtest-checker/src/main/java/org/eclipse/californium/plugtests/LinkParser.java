@@ -48,7 +48,7 @@ public class LinkParser {
 				if (path.startsWith("/")) {
 					path = path.substring(1);
 				}
-				LOG.debug("Parsing link resource: {}", path);
+				LOG.trace("Parsing link resource: {}", path);
 				Resource resource = new CoapResource(path);
 				for (String attrName : link.getAttributes().getAttributeKeySet()) {
 					for (String attrValue : link.getAttributes().getAttributeValues(attrName)) {

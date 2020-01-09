@@ -509,7 +509,7 @@ public final class CertificateRequest extends HandshakeMessage {
 				return false;
 			}
 		}
-		LOGGER.debug("certificate chain is signed with supported algorithm(s)");
+		LOGGER.trace("certificate chain is signed with supported algorithm(s)");
 		return true;
 	}
 
@@ -530,7 +530,7 @@ public final class CertificateRequest extends HandshakeMessage {
 				return true;
 			}
 		}
-		LOGGER.debug("certificate is NOT signed with supported algorithm(s)");
+		LOGGER.trace("certificate is NOT signed with supported algorithm(s)");
 		return false;
 	}
 

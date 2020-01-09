@@ -191,7 +191,7 @@ public class HttpStack {
 				// Create server-side I/O reactor
 				ioReactor = new DefaultListeningIOReactor();
 				// Listen of the given port
-				LOGGER.info("HttpStack listening on port {}", httpPort);
+				LOGGER.debug("HttpStack listening on port {}", httpPort);
 				ioReactor.listen(new InetSocketAddress(httpPort));
 
 				// create the listener thread
@@ -202,7 +202,7 @@ public class HttpStack {
 						// Starts the reactor and initiates the dispatch of I/O
 						// event notifications to the given IOEventDispatch.
 						try {
-							LOGGER.info("Submitted http listening to thread 'HttpStack listener'");
+							LOGGER.debug("Submitted http listening to thread 'HttpStack listener'");
 
 							ioReactor.execute(ioEventDispatch);
 						} catch (IOException e) {
@@ -240,7 +240,7 @@ public class HttpStack {
 				httpResponse.setEntity(new StringEntity("Californium Proxy server"));
 
 //				if (Bench_Help.DO_LOG) 
-					LOGGER.debug("Root request handled");
+					LOGGER.trace("Root request handled");
 			}
 		}
 
@@ -288,7 +288,7 @@ public class HttpStack {
 					// translate the request in a valid coap request
 					Request coapRequest = new HttpTranslator().getCoapRequest(httpRequest, localResource, proxyingEnabled);
 //					if (Bench_Help.DO_LOG) 
-						LOGGER.info("Received HTTP request and translate to {}", coapRequest);
+						LOGGER.debug("Received HTTP request and translate to {}", coapRequest);
 
 					// handle the requset
 					requestHandler.handleRequest(coapRequest, httpRequestContext);

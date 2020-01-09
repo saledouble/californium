@@ -97,7 +97,7 @@ public class ObjectSecurityContextLayer extends AbstractLayer {
 
 								@Override
 								public void run() {
-									LOGGER.info("Original Request: " + exchange.getRequest().toString());
+									LOGGER.trace("Original Request: " + exchange.getRequest().toString());
 									ObjectSecurityContextLayer.super.sendRequest(exchange, request);
 								}
 							});
@@ -141,7 +141,7 @@ public class ObjectSecurityContextLayer extends AbstractLayer {
 
 					});
 					// send start rederivation request
-					LOGGER.info("Auxiliary Request: " + exchange.getRequest().toString());
+					LOGGER.trace("Auxiliary Request: " + exchange.getRequest().toString());
 					final Exchange newExchange = new Exchange(startRederivation, Origin.LOCAL, executor);
 					newExchange.execute(new Runnable() {
 
@@ -161,7 +161,7 @@ public class ObjectSecurityContextLayer extends AbstractLayer {
 				return;
 			}
 		}
-		LOGGER.info("Request: " + exchange.getRequest().toString());
+		LOGGER.trace("Request: " + exchange.getRequest().toString());
 		super.sendRequest(exchange, request);
 	}
 

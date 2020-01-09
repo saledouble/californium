@@ -80,7 +80,7 @@ public class ProxyCoapClientResource extends ForwardingResource {
 
 				@Override
 				public void onResponse(Response incomingResponse) {
-					LOGGER.debug("ProxyCoapClientResource received {}", incomingResponse);
+					LOGGER.trace("ProxyCoapClientResource received {}", incomingResponse);
 					future.complete(CoapTranslator.getResponse(incomingResponse));
 					EndPointManagerPool.putClient(endpointManager);
 				}

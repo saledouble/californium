@@ -118,7 +118,7 @@ public class ProxyHttpClientResource extends ForwardingResource {
 			@Override
 			public void completed(HttpResponse result) {
 				long timestamp = ClockUtil.nanoRealtime();
-				LOGGER.debug("Incoming http response: {}", result.getStatusLine());
+				LOGGER.trace("Incoming http response: {}", result.getStatusLine());
 				// the entity of the response, if non repeatable, could be
 				// consumed only one time, so do not debug it!
 				// System.out.println(EntityUtils.toString(httpResponse.getEntity()));

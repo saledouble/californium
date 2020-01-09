@@ -106,7 +106,7 @@ public class ProxyHttpServer {
 				request.setResponse(response);
 				responseProduced(request, response);
 				context.handleRequestForwarding(response);
-				LOGGER.info("HTTP returned {}", response);
+				LOGGER.trace("HTTP returned {}", response);
 			}
 		};
 		exchange.setRequest(request);
@@ -184,7 +184,7 @@ public class ProxyHttpServer {
 			clientPath = PROXY_COAP_CLIENT;
 		}
 
-		LOGGER.info("Chose {} as clientPath", clientPath);
+		LOGGER.trace("Chose {} as clientPath", clientPath);
 
 		// set the path in the request to be forwarded correctly
 		request.getOptions().setUriPath(clientPath);
