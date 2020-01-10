@@ -110,7 +110,7 @@ public class TestRepeater {
 		if (0 == maximumRepeats) {
 			LOGGER.info("repeat until error!");
 		} else {
-			LOGGER.info("maximum repeats: {}", maximumRepeats);
+			LOGGER.debug("maximum repeats: {}", maximumRepeats);
 		}
 		// start alive logging
 		Thread alive = startAliveLogging();

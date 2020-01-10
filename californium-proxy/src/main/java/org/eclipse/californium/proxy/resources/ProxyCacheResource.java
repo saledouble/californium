@@ -162,7 +162,7 @@ public class ProxyCacheResource extends CoapResource implements CacheResource {
 
 					LOGGER.debug("Updated cached response");
 				} else {
-					LOGGER.warn("No max-age option set in response: {}", response);
+					LOGGER.info("No max-age option set in response: {}", response);
 				}
 			} else if (code == ResponseCode.CONTENT) {
 				// set max-age if not set

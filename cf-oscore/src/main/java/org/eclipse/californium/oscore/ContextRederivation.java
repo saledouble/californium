@@ -423,9 +423,9 @@ public class ContextRederivation {
 
 		String output = "Context re-derivation phase: " + currentPhase + " (" + supplemental + ")";
 		if (currentPhase == PHASE.INACTIVE) {
-			LOGGER.debug(output);
+			LOGGER.trace(output);
 		} else {
-			LOGGER.info(output);
+			LOGGER.trace(output);
 		}
 	}
 

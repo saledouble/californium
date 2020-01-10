@@ -231,7 +231,7 @@ public class ExtendedTestServer extends AbstractTestServer {
 		OperatingSystemMXBean osMxBean = ManagementFactory.getOperatingSystemMXBean();
 		int processors = osMxBean.getAvailableProcessors();
 		Logger logger = STATISTIC_LOGGER;
-		logger.info("{} processors", processors);
+		logger.trace("{} processors", processors);
 		ThreadMXBean threadMxBean = ManagementFactory.getThreadMXBean();
 		if (threadMxBean.isThreadCpuTimeSupported() && threadMxBean.isThreadCpuTimeEnabled()) {
 			long alltime = 0;
@@ -243,7 +243,7 @@ public class ExtendedTestServer extends AbstractTestServer {
 				}
 			}
 			long pTime = alltime / processors;
-			logger.info("cpu-time: {} ms (per-processor: {} ms)",
+			logger.trace("cpu-time: {} ms (per-processor: {} ms)",
 					TimeUnit.NANOSECONDS.toMillis(alltime), TimeUnit.NANOSECONDS.toMillis(pTime));
 		}
 		long gcCount = 0;
@@ -258,7 +258,7 @@ public class ExtendedTestServer extends AbstractTestServer {
 				gcTime += time;
 			}
 		}
-		logger.info("gc: {} ms, {} calls", gcTime, gcCount);
+		logger.trace("gc: {} ms, {} calls", gcTime, gcCount);
 		double loadAverage = osMxBean.getSystemLoadAverage();
 		if (!(loadAverage < 0.0d)) {
 			logger.info("average load: {}", String.format("%.2f", loadAverage));

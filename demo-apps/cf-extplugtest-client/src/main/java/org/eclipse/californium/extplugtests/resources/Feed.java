@@ -219,14 +219,14 @@ public class Feed extends CoapResource {
 							response.getToken());
 				} else {
 					timeout = 0;
-					LOGGER.info("client[{}] next change in {} ms, {} observer.", id, interval, observer);
+					LOGGER.trace("client[{}] next change in {} ms, {} observer.", id, interval, observer);
 					executorService.schedule(change, interval, TimeUnit.MILLISECONDS);
 				}
 			} else {
-				LOGGER.info("client[{}] pending change, {} observer, send {}!", id, observer, response.getToken());
+				LOGGER.trace("client[{}] pending change, {} observer, send {}!", id, observer, response.getToken());
 			}
 		} else {
-			LOGGER.info("client[{}] no observe {}!", id, request);
+			LOGGER.trace("client[{}] no observe {}!", id, request);
 		}
 		response.addMessageObserver(new MessageCompletionObserver(timeout, interval));
 		exchange.respond(response);
@@ -289,11 +289,11 @@ public class Feed extends CoapResource {
 				timeoutJob.cancel(false);
 			}
 			if (interval < 0) {
-				LOGGER.info("client[{}] response {}, next change in {} ms, {} observer.", id, state, -interval,
+				LOGGER.trace("client[{}] response {}, next change in {} ms, {} observer.", id, state, -interval,
 						getObserverCount());
 				executorService.schedule(change, -interval, TimeUnit.MILLISECONDS);
 			} else {
-				LOGGER.info("client[{}] response {}, {} observer.", id, state, getObserverCount());
+				LOGGER.trace("client[{}] response {}, {} observer.", id, state, getObserverCount());
 			}
 		}
 	}

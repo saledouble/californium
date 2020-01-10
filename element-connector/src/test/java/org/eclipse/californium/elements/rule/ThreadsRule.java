@@ -182,13 +182,13 @@ public class ThreadsRule implements TestRule {
 	 * @param list list of threads
 	 */
 	public void dump(String message, List<Thread> list) {
-		LOGGER.info("Threads {}: {} threads", message, list.size());
+		LOGGER.trace("Threads {}: {} threads", message, list.size());
 		for (Thread thread : list) {
 			ThreadGroup threadGroup = thread.getThreadGroup();
 			if (threadGroup != null) {
-				LOGGER.info("Threads {} : {}-{}", description, thread.getName(), threadGroup.getName());
+				LOGGER.trace("Threads {} : {}-{}", description, thread.getName(), threadGroup.getName());
 			} else {
-				LOGGER.info("Threads {} : {}", description, thread.getName());
+				LOGGER.trace("Threads {} : {}", description, thread.getName());
 			}
 			if (LOGGER.isTraceEnabled()) {
 				StackTraceElement[] stackTrace = thread.getStackTrace();
