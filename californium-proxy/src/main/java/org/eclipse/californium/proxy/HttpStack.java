@@ -240,7 +240,7 @@ public class HttpStack {
 				httpResponse.setEntity(new StringEntity("Californium Proxy server"));
 
 //				if (Bench_Help.DO_LOG) 
-					LOGGER.debug("Root request handled");
+					LOGGER.trace("Root request handled");
 			}
 		}
 

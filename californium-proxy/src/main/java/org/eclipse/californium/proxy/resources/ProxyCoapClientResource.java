@@ -80,7 +80,7 @@ public class ProxyCoapClientResource extends ForwardingResource {
 
 				@Override
 				public void onResponse(Response incomingResponse) {
-					LOGGER.debug("ProxyCoapClientResource received {}", incomingResponse);
+					LOGGER.trace("ProxyCoapClientResource received {}", incomingResponse);
 					future.complete(CoapTranslator.getResponse(incomingResponse));
 					EndPointManagerPool.putClient(endpointManager);
 				}
@@ -134,7 +134,7 @@ public class ProxyCoapClientResource extends ForwardingResource {
 			future.complete(new Response(CoapTranslator.STATUS_FIELD_MALFORMED));
 			return future;
 		} catch (Exception e) {
-			LOGGER.warn("Failed to execute request: {}", e.getMessage());
+			LOGGER.severe("Failed to execute request: {}", e.getMessage());
 			future.complete(new Response(ResponseCode.INTERNAL_SERVER_ERROR));
 			return future;
 		}

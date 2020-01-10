@@ -1307,7 +1307,7 @@ public abstract class Handshaker implements Destroyable {
 			if (certificateVerifier != null) {
 				certificateVerifier.verifyCertificate(message, session);
 			} else {
-				LOGGER.debug("Certificate validation failed: x509 could not be trusted!");
+				LOGGER.warn("Certificate validation failed: x509 could not be trusted!");
 				AlertMessage alert = new AlertMessage(AlertLevel.FATAL, AlertDescription.UNEXPECTED_MESSAGE,
 						session.getPeer());
 				throw new HandshakeException("Trust is not possible!", alert);
@@ -1315,7 +1315,7 @@ public abstract class Handshaker implements Destroyable {
 		} else {
 			RawPublicKeyIdentity rpk = new RawPublicKeyIdentity(message.getPublicKey());
 			if (!rpkStore.isTrusted(rpk)) {
-				LOGGER.debug("Certificate validation failed: Raw public key is not trusted");
+				LOGGER.warn("Certificate validation failed: Raw public key is not trusted");
 				AlertMessage alert = new AlertMessage(AlertLevel.FATAL, AlertDescription.BAD_CERTIFICATE,
 						session.getPeer());
 				throw new HandshakeException("Raw public key is not trusted", alert);

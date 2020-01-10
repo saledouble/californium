@@ -671,7 +671,7 @@ public class ClientHandshaker extends Handshaker {
 		if (maxFragmentLengthCode != null) {
 			MaxFragmentLengthExtension ext = new MaxFragmentLengthExtension(maxFragmentLengthCode); 
 			helloMessage.addExtension(ext);
-			LOGGER.debug(
+			LOGGER.trace(
 					"Indicating max. fragment length [{}] to server [{}]",
 					maxFragmentLengthCode, getPeerAddress());
 		}
