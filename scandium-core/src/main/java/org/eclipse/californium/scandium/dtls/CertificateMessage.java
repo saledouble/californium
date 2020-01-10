@@ -276,7 +276,7 @@ public final class CertificateMessage extends HandshakeMessage {
 			InetSocketAddress peerAddress) throws HandshakeException {
 
 		if (CertificateType.RAW_PUBLIC_KEY == certificateType) {
-			LOGGER.debug("Parsing RawPublicKey CERTIFICATE message");
+			LOGGER.trace("Parsing RawPublicKey CERTIFICATE message");
 			int certificateLength = reader.read(CERTIFICATE_LENGTH_BITS);
 			byte[] rawPublicKey = reader.readBytes(certificateLength);
 			return new CertificateMessage(rawPublicKey, peerAddress);

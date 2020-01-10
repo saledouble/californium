@@ -80,10 +80,10 @@ public final class DebugConnectionStore extends InMemoryConnectionStore {
 	 */
 	private void dump(Connection connection) {
 		if (connection.hasEstablishedSession()) {
-			LOG.info("  {}connection: {} - {} : {}", tag, connection.getConnectionId(),
+			LOG.trace("  {}connection: {} - {} : {}", tag, connection.getConnectionId(),
 					connection.getPeerAddress(), connection.getEstablishedSession().getSessionIdentifier());
 		} else {
-			LOG.info("  {}connection: {} - {}", tag, connection.getConnectionId(), connection.getPeerAddress());
+			LOG.trace("  {}connection: {} - {}", tag, connection.getConnectionId(), connection.getPeerAddress());
 		}
 	}
 
@@ -147,7 +147,7 @@ public final class DebugConnectionStore extends InMemoryConnectionStore {
 	private <K> void dump(ConcurrentMap<K, Connection> map) {
 		for (K key : map.keySet()) {
 			Connection connection = map.get(key);
-			LOG.warn("  {} connection: {} - {}", tag, key, connection);
+			LOG.trace("  {} connection: {} - {}", tag, key, connection);
 		}
 	}
 }

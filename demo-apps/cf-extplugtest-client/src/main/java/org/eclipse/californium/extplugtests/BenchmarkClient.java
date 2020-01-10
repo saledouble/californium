@@ -375,7 +375,7 @@ public class BenchmarkClient {
 					next();
 				}
 				long c = overallRequestsDownCounter.get();
-				LOGGER.info("Received response: {} {}", response.advanced(), c);
+				LOGGER.trace("Received response: {} {}", response.advanced(), c);
 			} else {
 				long c = requestsCounter.get();
 				LOGGER.warn("Received error response: {} {} ({} successful)", endpoint.getUri(), response.advanced(), c);
@@ -479,7 +479,7 @@ public class BenchmarkClient {
 			CoapResponse response = client.advanced(post);
 			if (response != null) {
 				if (response.isSuccess()) {
-					LOGGER.info("Received response: {}", response.advanced());
+					LOGGER.trace("Received response: {}", response.advanced());
 					clientCounter.incrementAndGet();
 					checkReady(true, true);
 					return true;
@@ -487,7 +487,7 @@ public class BenchmarkClient {
 					LOGGER.warn("Received error response: {} - {}", response.advanced().getCode(), response.advanced().getPayloadString());
 				}
 			} else {
-				LOGGER.warn("Received no response!");
+				LOGGER.trace("Received no response!");
 			}
 		} catch (Exception ex) {
 			LOGGER.warn("Test failed!", ex);
@@ -974,21 +974,21 @@ public class BenchmarkClient {
 		if (tag != null) {
 			// with tag, use file
 			logger = LoggerFactory.getLogger(logger.getName() + ".file");
-			logger.info("------- {} ------------------------------------------------", tag);
-			logger.info("{}, {}, {}", osMxBean.getName(), osMxBean.getVersion(), osMxBean.getArch());
+			logger.trace("------- {} ------------------------------------------------", tag);
+			logger.trace("{}, {}, {}", osMxBean.getName(), osMxBean.getVersion(), osMxBean.getArch());
 			StringBuilder line = new StringBuilder();
 			List<String> vmArgs = ManagementFactory.getRuntimeMXBean().getInputArguments();
 			for (String arg : vmArgs) {
 				line.append(arg).append(" ");
 			}
-			logger.info("{}", line);
+			logger.trace("{}", line);
 			line.setLength(0);
 			for (String arg : args) {
 				line.append(arg).append(" ");
 			}
-			logger.info("{}", line);
+			logger.trace("{}", line);
 		}
-		logger.info("uptime: {} ms, {} processors", TimeUnit.NANOSECONDS.toMillis(uptimeNanos), processors);
+		logger.trace("uptime: {} ms, {} processors", TimeUnit.NANOSECONDS.toMillis(uptimeNanos), processors);
 		ThreadMXBean threadMxBean = ManagementFactory.getThreadMXBean();
 		if (threadMxBean.isThreadCpuTimeSupported() && threadMxBean.isThreadCpuTimeEnabled()) {
 			long alltime = 0;
@@ -1000,7 +1000,7 @@ public class BenchmarkClient {
 				}
 			}
 			long pTime = alltime / processors;
-			logger.info("cpu-time: {} ms (per-processor: {} ms, load: {}%)",
+			logger.trace("cpu-time: {} ms (per-processor: {} ms, load: {}%)",
 					TimeUnit.NANOSECONDS.toMillis(alltime), TimeUnit.NANOSECONDS.toMillis(pTime),
 					(pTime * 100) / uptimeNanos);
 		}
@@ -1016,7 +1016,7 @@ public class BenchmarkClient {
 				gcTime += time;
 			}
 		}
-		logger.info("gc: {} ms, {} calls", gcTime, gcCount);
+		logger.trace("gc: {} ms, {} calls", gcTime, gcCount);
 		double loadAverage = osMxBean.getSystemLoadAverage();
 		if (!(loadAverage < 0.0d)) {
 			logger.info("average load: {}", String.format("%.2f", loadAverage));

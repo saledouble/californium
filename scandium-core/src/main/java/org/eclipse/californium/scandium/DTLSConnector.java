@@ -1446,7 +1446,7 @@ public class DTLSConnector implements Connector, RecordLayer {
 		} else {
 			// change cipher spec can only be processed within the
 			// context of an existing handshake -> ignore record
-			LOGGER.debug("Received CHANGE_CIPHER_SPEC record from peer [{}] with no handshake going on", record.getPeerAddress());
+			LOGGER.trace("Received CHANGE_CIPHER_SPEC record from peer [{}] with no handshake going on", record.getPeerAddress());
 		}
 	}
 

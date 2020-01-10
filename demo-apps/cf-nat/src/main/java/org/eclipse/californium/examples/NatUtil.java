@@ -207,7 +207,7 @@ public class NatUtil implements Runnable {
 			int sent = sentMessages.get();
 			int manipulated = manipulatedMessages.get();
 			if (sent > 0) {
-				LOGGER.warn("manipulated {} {}/{}%, sent {} {}.", title, manipulated,
+				LOGGER.trace("manipulated {} {}/{}%, sent {} {}.", title, manipulated,
 						manipulated * 100 / (manipulated + sent), title, sent);
 			} else if (manipulated > 0) {
 				LOGGER.warn("manipulated {} {}/100%, no {} sent!.", title, manipulated, title);
@@ -489,7 +489,7 @@ public class NatUtil implements Runnable {
 		if (null != entry) {
 			entry.stop();
 		} else {
-			LOGGER.warn("no mapping found for {}!", incoming);
+			LOGGER.trace("no mapping found for {}!", incoming);
 		}
 		return null != entry;
 	}
@@ -505,7 +505,7 @@ public class NatUtil implements Runnable {
 		if (null != entry) {
 			return entry.getPort();
 		} else {
-			LOGGER.warn("no mapping found for {}!", incoming);
+			LOGGER.trace("no mapping found for {}!", incoming);
 			return -1;
 		}
 	}
@@ -521,7 +521,7 @@ public class NatUtil implements Runnable {
 		if (null != entry) {
 			return new InetSocketAddress(destination.getAddress(), entry.getPort());
 		} else {
-			LOGGER.warn("no mapping found for {}!", incoming);
+			LOGGER.trace("no mapping found for {}!", incoming);
 			return null;
 		}
 	}
@@ -556,7 +556,7 @@ public class NatUtil implements Runnable {
 		} else {
 			forward = new MessageDropping("request", percent);
 			backward = new MessageDropping("responses", percent);
-			LOGGER.info("NAT message dropping {}%.", percent);
+			LOGGER.trace("NAT message dropping {}%.", percent);
 		}
 	}
 
@@ -577,7 +577,7 @@ public class NatUtil implements Runnable {
 			}
 		} else {
 			forward = new MessageDropping("request", percent);
-			LOGGER.info("NAT forward message dropping {}%.", percent);
+			LOGGER.trace("NAT forward message dropping {}%.", percent);
 		}
 	}
 
@@ -598,7 +598,7 @@ public class NatUtil implements Runnable {
 			}
 		} else {
 			backward = new MessageDropping("response", percent);
-			LOGGER.info("NAT backward message dropping {}%.", percent);
+			LOGGER.trace("NAT backward message dropping {}%.", percent);
 		}
 	}
 
@@ -624,7 +624,7 @@ public class NatUtil implements Runnable {
 			}
 		} else {
 			reorder = new MessageReordering("reordering", percent, delayMillis, randomDelayMillis);
-			LOGGER.info("NAT message reordering {}%.", percent);
+			LOGGER.trace("NAT message reordering {}%.", percent);
 		}
 	}
 
@@ -763,10 +763,10 @@ public class NatUtil implements Runnable {
 			}
 			MessageDropping dropping = forward;
 			if (dropping != null && dropping.dropMessage()) {
-				LOGGER.info("forward drops {} bytes from {} to {} via {}", packet.getLength(), incomingName,
+				LOGGER.debug("forward drops {} bytes from {} to {} via {}", packet.getLength(), incomingName,
 						destinationName, natName);
 			} else {
-				LOGGER.info("forward {} bytes from {} to {} via {}", packet.getLength(), incomingName, destinationName,
+				LOGGER.debug("forward {} bytes from {} to {} via {}", packet.getLength(), incomingName, destinationName,
 						natName);
 				packet.setSocketAddress(destination);
 				lastUsage.set(System.nanoTime());
