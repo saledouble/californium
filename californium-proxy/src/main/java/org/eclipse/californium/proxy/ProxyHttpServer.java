@@ -85,7 +85,7 @@ public class ProxyHttpServer {
 
 	public void handleRequest(final Request request, final HttpRequestContext context) {
 		
-		LOGGER.info("ProxyEndpoint handles request {}", request);
+		LOGGER.debug("ProxyEndpoint handles request {}", request);
 		
 		Exchange exchange = new Exchange(request, Origin.REMOTE, null) {
 
@@ -119,7 +119,7 @@ public class ProxyHttpServer {
 			// get the response from the cache
 			response = cacheResource.getResponse(request);
 
-				LOGGER.info("Cache returned {}", response);
+				LOGGER.debug("Cache returned {}", response);
 
 			// update statistics
 			statsResource.updateStatistics(request, response != null);
@@ -138,7 +138,7 @@ public class ProxyHttpServer {
 			if (request.getOptions().hasProxyUri()) {
 				try {
 					manageProxyUriRequest(request);
-					LOGGER.info("after manageProxyUriRequest: {}", request);
+					LOGGER.debug("after manageProxyUriRequest: {}", request);
 
 				} catch (URISyntaxException e) {
 					LOGGER.warn(String.format("Proxy-uri malformed: %s", request.getOptions().getProxyUri()));
@@ -184,7 +184,7 @@ public class ProxyHttpServer {
 			clientPath = PROXY_COAP_CLIENT;
 		}
 
-		LOGGER.info("Chose {} as clientPath", clientPath);
+		LOGGER.trace("Chose {} as clientPath", clientPath);
 
 		// set the path in the request to be forwarded correctly
 		request.getOptions().setUriPath(clientPath);
