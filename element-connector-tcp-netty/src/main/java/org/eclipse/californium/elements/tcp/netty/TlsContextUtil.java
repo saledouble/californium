@@ -93,7 +93,7 @@ public class TlsContextUtil extends TcpContextUtil {
 				// getPeerCertificates fails
 				checkKerberos = true;
 			} catch (RuntimeException e) {
-				LOGGER.warn("TLS({}) failed to extract principal {}", id, e.getMessage());
+				LOGGER.trace("TLS({}) failed to extract principal {}", id, e.getMessage());
 			}
 
 			if (checkKerberos) {
@@ -102,7 +102,7 @@ public class TlsContextUtil extends TcpContextUtil {
 				} catch (SSLPeerUnverifiedException e2) {
 					// still unverified, so also no kerberos
 					if (warnMissingPrincipal) {
-						LOGGER.warn("TLS({}) failed to verify principal, {}", id, e2.getMessage());
+						LOGGER.trace("TLS({}) failed to verify principal, {}", id, e2.getMessage());
 					} else {
 						LOGGER.trace("TLS({}) failed to verify principal, {}", id, e2.getMessage());
 					}
@@ -110,9 +110,9 @@ public class TlsContextUtil extends TcpContextUtil {
 			}
 
 			if (principal != null) {
-				LOGGER.debug("TLS({}) Principal {}", id, principal.getName());
+				LOGGER.trace("TLS({}) Principal {}", id, principal.getName());
 			} else if (warnMissingPrincipal) {
-				LOGGER.warn("TLS({}) principal missing", id);
+				LOGGER.trace("TLS({}) principal missing", id);
 			} else {
 				LOGGER.trace("TLS({}) principal missing", id);
 			}
@@ -121,7 +121,7 @@ public class TlsContextUtil extends TcpContextUtil {
 			if (sessionId != null && sessionId.length > 0) {
 				String sslId = StringUtil.byteArray2HexString(sessionId, StringUtil.NO_SEPARATOR, 0);
 				String cipherSuite = sslSession.getCipherSuite();
-				LOGGER.debug("TLS({},{},{})", id, StringUtil.trunc(sslId, 14), cipherSuite);
+				LOGGER.trace("TLS({},{},{})", id, StringUtil.trunc(sslId, 14), cipherSuite);
 				return new TlsEndpointContext(address, principal, id, sslId, cipherSuite);
 			}
 		}
